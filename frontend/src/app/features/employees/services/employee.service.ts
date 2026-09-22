@@ -11,6 +11,6 @@ export class EmployeeService {
 
     }
     getEmployees(): Observable<Employee[]>{
-        return this.http.get<Employee[]>('http:localhost/8080/employees');
+        return this.http.get<Employee[]>('http://localhost:8080/employees');
     }
 }

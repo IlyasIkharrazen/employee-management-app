@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { EmployeeService } from '../../services/employee.service';
 
 @Component({
   imports: [],
@@ -6,4 +7,10 @@ import { Component } from '@angular/core';
   styleUrl: './employee-list.scss',
   templateUrl: './employee-list.html',
 })
-export class EmployeeList {}
+export class EmployeeList {
+
+  constructor(private employeeService: EmployeeService){
+  }
+  
+  this.employeeService.getEmployees.subcribe(employee => console.log(employee));
+}

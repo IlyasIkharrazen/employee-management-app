@@ -11,6 +11,8 @@ export class EmployeeList {
 
   constructor(private employeeService: EmployeeService){
   }
-  
-  this.employeeService.getEmployees.subcribe(employee => console.log(employee));
+  ngOnInit(){
+     this.employeeService.getEmployees().subscribe(employees => console.log(employees));
+  }
+ 
 }

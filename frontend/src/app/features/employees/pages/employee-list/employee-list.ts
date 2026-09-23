@@ -1,4 +1,4 @@
-import { Component, OnInit, Signal } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { EmployeeService } from '../../services/employee.service';
 import { Employee } from '../../models/employee.model';
 
@@ -10,7 +10,7 @@ import { Employee } from '../../models/employee.model';
 })
 export class EmployeeList implements OnInit{
 
-  employees!: Signal<Employee[]>([]);
+  employees = signal<Employee[]>([]);
 
   constructor(private employeeService: EmployeeService){
   }

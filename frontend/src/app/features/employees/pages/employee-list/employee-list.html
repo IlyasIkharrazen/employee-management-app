@@ -1,6 +1,58 @@
+<section class="employee-page">
+  <div class="page-header">
+    <div>
+      <p class="eyebrow">Employee Management</p>
+      <h1>Liste des employés</h1>
+      <p class="subtitle">
+        Consulte les collaborateurs enregistrés dans l'application.
+      </p>
+    </div>
 
-<button (click)="loadEmployees()">Afficher les employées</button>
-@for(employee of employees(); track employee.id){
-    <p>{{ employee.firstname }} {{ employee.lastname}}</p>
-    <p>email : {{employee.email}}</p>
-}
+    <button
+      type="button"
+      class="primary-button"
+      (click)="loadEmployees()"
+    >
+      Afficher tous les employés
+    </button>
+  </div>
+
+  @if (employees().length > 0) {
+    <div class="list-meta">
+      <span>{{ employees().length }} employé(s)</span>
+    </div>
+
+    <div class="table-card">
+      <div class="table-scroll">
+        <table class="employee-table">
+          <thead>
+            <tr>
+              <th>Prénom</th>
+              <th>Nom</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            @for (employee of employees(); track employee.id) {
+              <tr>
+                <td class="employee-firstname">{{ employee.firstname }}</td>
+                <td>{{ employee.lastname }}</td>
+                <td>
+                  <span class="email">{{ employee.email }}</span>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  } @else {
+    <div class="empty-state">
+      <h2>Aucun employé affiché</h2>
+      <p>
+        Clique sur « Afficher tous les employés » pour charger la liste.
+      </p>
+    </div>
+  }
+</section>

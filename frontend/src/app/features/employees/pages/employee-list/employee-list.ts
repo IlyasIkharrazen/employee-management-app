@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Signal } from '@angular/core';
 import { EmployeeService } from '../../services/employee.service';
 import { Employee } from '../../models/employee.model';
 
@@ -10,13 +10,12 @@ import { Employee } from '../../models/employee.model';
 })
 export class EmployeeList implements OnInit{
 
-  employees: Employee[] = [];
+  employees!: Signal<Employee[]>([]);
 
   constructor(private employeeService: EmployeeService){
   }
   ngOnInit(){
-    console.log("ngoninit");
-     this.employeeService.getEmployees().subscribe(employees =>  this.employees = employees);
+     this.employeeService.getEmployees().subscribe(employees =>  this.employees.set(employees));
   }
  
 }

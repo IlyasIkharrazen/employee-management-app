@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../../services/employee.service';
 
 @Component({
@@ -7,7 +7,7 @@ import { EmployeeService } from '../../services/employee.service';
   styleUrl: './employee-list.scss',
   templateUrl: './employee-list.html',
 })
-export class EmployeeList {
+export class EmployeeList implements OnInit{
 
   constructor(private employeeService: EmployeeService){
   }

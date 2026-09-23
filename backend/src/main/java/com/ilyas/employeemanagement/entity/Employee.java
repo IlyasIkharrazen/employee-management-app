@@ -15,14 +15,17 @@ public class Employee {
     private String lastname;
     private String email;
 
+    private String immatricule;
+
     protected Employee(){
 
     }
 
-    public Employee(String firstname, String lastname, String email){
+    public Employee(String firstname, String lastname, String email, String immatricule){
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
+        this.immatricule = immatricule;
     }
 
     public void setFirstname(String firstname){
@@ -34,6 +37,7 @@ public class Employee {
     public void setEmail(String email){
         this.email = email;
     }
+    public void setImmatricule(String immatricule){this.immatricule = immatricule;}
 
     public Long getId(){
         return this.id;
@@ -46,6 +50,9 @@ public class Employee {
     }
     public String getEmail(){
         return this.email;
+    }
+    public String getImmatricule(){
+        return this.immatricule;
     }
 
 }

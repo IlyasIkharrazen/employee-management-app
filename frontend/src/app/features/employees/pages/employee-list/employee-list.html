@@ -16,6 +16,18 @@
       Afficher tous les employés
     </button>
   </div>
+  <div class="form-search">
+    <form [formGroup]="searchForm">
+        <label for="firstname">Prénom : </label>
+        <input formControlName="firstname" type="text" name="firstname">
+        <label for="lastname">Nom : </label>
+        <input formControlName="lastname" type="text" name="lastname">
+        <label for="email">Email : </label>
+        <input formControlName="email" type="text" name="email">
+        <label for="immatricule">Immatricule : </label>
+        <input formControlName="immatricule" type="text" name="immatricule">
+    </form>
+  </div>
 
   @if (employees().length > 0) {
     <div class="list-meta">

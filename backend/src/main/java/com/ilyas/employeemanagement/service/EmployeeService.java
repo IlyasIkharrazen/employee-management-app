@@ -23,6 +23,12 @@ public class EmployeeService {
     }
 
     public List<Employee> searchEmployee(String firstname, String lastname, String email, String immatricule){
-        return employeeRepository.
+
+        String firstnameNormalized = firstname == null || firstname.isBlank() ? null : firstname.trim();
+        String lastnameNormalized = lastname == null || lastname.isBlank() ? null : lastname.trim();
+        String emailNormalized = email == null || email.isBlank() ? null : email.trim();
+        String immatriculeNormalized = immatricule == null || immatricule.isBlank() ? null : immatricule.trim();
+
+        return employeeRepository.searchEmployee(firstnameNormalized, lastnameNormalized, emailNormalized, immatriculeNormalized);
     }
 }

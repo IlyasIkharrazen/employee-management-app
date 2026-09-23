@@ -2,6 +2,7 @@ import { Component, OnInit, signal } from '@angular/core';
 import { EmployeeService } from '../../services/employee.service';
 import { Employee } from '../../models/employee.model';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { debounceTime, switchMap } from 'rxjs';
 
 @Component({
   imports: [
@@ -25,9 +26,13 @@ export class EmployeeList implements OnInit{
   constructor(private employeeService: EmployeeService){
   }
   ngOnInit(){
-      this.searchForm.valueChanges.subscribe(value => {
-      this.employeeService.searchEmployees(value).subscribe(employees => this.employees.update((value) => value = employees));
-      console.log(this.employees());
+      this.searchForm.valueChanges.pipe(
+        debounceTime(300),
+        switchMap(value =>{
+          return this.employeeService.searchEmployees(value)}
+        )
+      ).subscribe(value => {
+      this.employees.set(value);
       });
   }
 

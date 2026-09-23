@@ -20,7 +20,7 @@ export class EmployeeService{
         .set('lastname', form.lastname)
         .set('email', form.email)
         .set('immatricule', form.immatricule)
-        return this.http.get<Employee[]>('http://localhost:8080/employees/searh',
+        return this.http.get<Employee[]>('http://localhost:8080/employees/search',
             {params}
         )
     }

@@ -21,4 +21,8 @@ public class EmployeeService {
     public Employee createEmployee(Employee employee){
         return employeeRepository.save(employee);
     }
+
+    public List<Employee> searchEmployee(String firstname, String lastname, String email, String immatricule){
+        return employeeRepository.
+    }
 }

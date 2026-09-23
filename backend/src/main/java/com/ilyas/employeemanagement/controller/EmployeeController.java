@@ -26,7 +26,10 @@ public class EmployeeController {
         return employeeService.createEmployee(employee);
     }
 
-
+    @GetMapping("/search")
+    public List<Employee> searchEmployee(@RequestParam(required = false) String firstname, @RequestParam(required = false) String lastname, @RequestParam(required = false) String email, @RequestParam(required = false) String immatricule){
+        return employeeService.searchEmployee(firstname, lastname, email, immatricule);
+    }
 
 
 

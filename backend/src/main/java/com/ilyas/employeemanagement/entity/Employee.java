@@ -35,6 +35,9 @@ public class Employee {
         this.email = email;
     }
 
+    public Long getId(){
+        return this.id;
+    }
     public String getFirstname(){
         return this.firstname;
     }
@@ -44,4 +47,5 @@ public class Employee {
     public String getEmail(){
         return this.email;
     }
+
 }

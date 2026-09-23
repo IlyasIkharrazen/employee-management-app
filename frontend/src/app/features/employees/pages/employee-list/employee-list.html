@@ -1,1 +1,4 @@
-<p>employee-list works!</p>
+@for(employee of employees; track employee.id){
+    <p>{{ employee.firstname }} {{ employee.lastname}}</p>
+    <p>email : {{employee.email}}</p>
+}

@@ -76,6 +76,57 @@ h1 {
   outline-offset: 3px;
 }
 
+.form-search {
+  margin-bottom: 28px;
+  padding: 22px;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+}
+
+.form-search form {
+  display: grid;
+  grid-template-columns: auto minmax(180px, 1fr) auto minmax(180px, 1fr);
+  align-items: center;
+  gap: 16px;
+}
+
+.form-search label {
+  color: #475467;
+  font-size: 0.88rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.form-search input {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  box-sizing: border-box;
+  padding: 0 13px;
+  border: 1px solid #d0d5dd;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #172033;
+  font: inherit;
+  outline: none;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    background 160ms ease;
+}
+
+.form-search input:hover {
+  border-color: #98a2b3;
+}
+
+.form-search input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+  background: #ffffff;
+}
+
 .list-meta {
   display: flex;
   justify-content: flex-end;
@@ -162,6 +213,12 @@ h1 {
   line-height: 1.6;
 }
 
+@media (max-width: 900px) {
+  .form-search form {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+}
+
 @media (max-width: 720px) {
   .employee-page {
     width: min(100% - 24px, 1100px);
@@ -175,6 +232,19 @@ h1 {
 
   .primary-button {
     width: 100%;
+  }
+
+  .form-search {
+    padding: 18px;
+  }
+
+  .form-search form {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .form-search label:not(:first-child) {
+    margin-top: 8px;
   }
 
   .employee-table th,

@@ -29,6 +29,10 @@ public class EmployeeService {
         String emailNormalized = email == null || email.isBlank() ? "" : email.trim();
         String immatriculeNormalized = immatricule == null || immatricule.isBlank() ? "" : immatricule.trim();
 
+        if(firstnameNormalized.isEmpty() && lastnameNormalized.isEmpty() && emailNormalized.isEmpty() && immatriculeNormalized.isEmpty()){
+            return null;
+        }
+
         return employeeRepository.searchEmployee(firstnameNormalized, lastnameNormalized, emailNormalized, immatriculeNormalized);
     }
 }

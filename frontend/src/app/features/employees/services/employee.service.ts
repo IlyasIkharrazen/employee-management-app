@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Employee } from '../models/employee.model';
-import { FormGroup } from '@angular/forms';
+import { EmployeeSearchCriteria } from '../models/employee-search-criteria.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ export class EmployeeService{
     getEmployees(): Observable<Employee[]>{
         return this.http.get<Employee[]>('http://localhost:8080/employees');
     }
-    searchEmployees(form: any): Observable<Employee[]> {
+    searchEmployees(form: EmployeeSearchCriteria): Observable<Employee[]> {
         const params = new HttpParams()
         .set('firstname', form.firstname)
         .set('lastname', form.lastname)

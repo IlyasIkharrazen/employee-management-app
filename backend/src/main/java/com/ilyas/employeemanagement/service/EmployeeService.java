@@ -30,7 +30,7 @@ public class EmployeeService {
         String immatriculeNormalized = immatricule == null || immatricule.isBlank() ? "" : immatricule.trim();
 
         if(firstnameNormalized.isEmpty() && lastnameNormalized.isEmpty() && emailNormalized.isEmpty() && immatriculeNormalized.isEmpty()){
-            return null;
+            return List.of();
         }
 
         return employeeRepository.searchEmployee(firstnameNormalized, lastnameNormalized, emailNormalized, immatriculeNormalized);

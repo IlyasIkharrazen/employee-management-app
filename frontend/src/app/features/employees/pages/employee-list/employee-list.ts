@@ -2,7 +2,7 @@ import { Component, OnInit, signal } from '@angular/core';
 import { EmployeeService } from '../../services/employee.service';
 import { Employee } from '../../models/employee.model';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { debounceTime, switchMap } from 'rxjs';
+import { debounceTime, of, switchMap } from 'rxjs';
 
 @Component({
   imports: [
@@ -29,6 +29,10 @@ export class EmployeeList implements OnInit{
       this.searchForm.valueChanges.pipe(
         debounceTime(300),
         switchMap(value =>{
+          const emptyForm = !value.firstname?.trim() && !value.lastname?.trim() && !value.email?.trim() && !value.immatricule?.trim();
+          if(emptyForm){
+            return of([]);
+          }
           return this.employeeService.searchEmployees(value)}
         )
       ).subscribe(value => {

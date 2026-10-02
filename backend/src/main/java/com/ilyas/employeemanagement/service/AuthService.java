@@ -5,6 +5,7 @@ import com.ilyas.employeemanagement.dto.auth.RegisterRequest;
 import com.ilyas.employeemanagement.entity.User;
 import com.ilyas.employeemanagement.enums.Role;
 import com.ilyas.employeemanagement.repository.UserRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -32,16 +33,18 @@ public class AuthService {
         return authenticationManager.authenticate(token);
     }
 
-    public User register(RegisterRequest registerRequest){
+    public ResponseEntity<String> register(RegisterRequest registerRequest){
 
         User user = new User();
-        if(userRepository.findByEmail(registerRequest.getEmail()) != null){
-            throw new RuntimeException("erreur email deja existant");
+        String email = registerRequest.getEmail().trim().toLowerCase();
+        if(userRepository.findByEmail(email).isPresent()){
+            throw new RuntimeException("Email déjà existant");
         }
         user.setEmail(registerRequest.getEmail());
         user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
         user.setRole(Role.USER);
-        return userRepository.save(user);
+        userRepository.save(user);
+        return ResponseEntity.ok("Register successful");
     }
 
 }

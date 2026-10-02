@@ -1,6 +1,7 @@
 package com.ilyas.employeemanagement.controller;
 
 import com.ilyas.employeemanagement.dto.auth.LoginRequest;
+import com.ilyas.employeemanagement.dto.auth.RegisterRequest;
 import com.ilyas.employeemanagement.service.AuthService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,5 +23,10 @@ public class AuthController {
         authService.login(loginRequest);
 
         return ResponseEntity.ok("Login successful");
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<String> register(@RequestBody RegisterRequest registerRequest){
+        return authService.register(registerRequest);
     }
 }

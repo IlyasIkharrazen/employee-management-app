@@ -3,7 +3,6 @@ package com.ilyas.employeemanagement.security;
 import com.ilyas.employeemanagement.entity.User;
 import com.ilyas.employeemanagement.repository.UserRepository;
 import org.jspecify.annotations.NonNull;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AuthService {
-    private AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
 
-    AuthService(AuthenticationManager authenticationManager){
+    public AuthService(AuthenticationManager authenticationManager){
        this.authenticationManager = authenticationManager;
     }
 

@@ -33,18 +33,17 @@ public class AuthService {
         return authenticationManager.authenticate(token);
     }
 
-    public ResponseEntity<String> register(RegisterRequest registerRequest){
+    public void register(RegisterRequest registerRequest){
 
         User user = new User();
         String email = registerRequest.getEmail().trim().toLowerCase();
         if(userRepository.findByEmail(email).isPresent()){
             throw new RuntimeException("Email déjà existant");
         }
-        user.setEmail(registerRequest.getEmail());
+        user.setEmail(email);
         user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
         user.setRole(Role.USER);
         userRepository.save(user);
-        return ResponseEntity.ok("Register successful");
     }
 
 }

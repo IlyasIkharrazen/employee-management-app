@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.session.SessionAuthenticationStrategy;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.security.web.context.SecurityContextRepository;
 import org.springframework.security.web.csrf.CsrfToken;
@@ -20,13 +21,21 @@ public class AuthController {
 
     private final AuthService authService;
     private final SecurityContextRepository securityContextRepository = new HttpSessionSecurityContextRepository();
+    private final SessionAuthenticationStrategy sessionAuthenticationStrategy;
 
-    public AuthController(AuthService authService){
+    public AuthController(AuthService authService, SessionAuthenticationStrategy sessionAuthenticationStrategy){
         this.authService = authService;
+        this.sessionAuthenticationStrategy = sessionAuthenticationStrategy;
     }
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest, HttpServletRequest request, HttpServletResponse response){
        Authentication authentication = authService.login(loginRequest);
+
+       sessionAuthenticationStrategy.onAuthentication(
+               authentication,
+               request,
+               response
+       );
 
         SecurityContext context = SecurityContextHolder.createEmptyContext();
         context.setAuthentication(authentication);

@@ -1,6 +1,7 @@
 package com.ilyas.employeemanagement.config;
 
 import com.ilyas.employeemanagement.security.CustomUserDetailsService;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -22,7 +23,15 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         http.authorizeHttpRequests(auth -> auth.requestMatchers("/auth/**").permitAll().
-                anyRequest().authenticated()).httpBasic(Customizer.withDefaults());
+                anyRequest().authenticated()).httpBasic(Customizer.withDefaults()).
+        logout(logout -> logout
+                .logoutUrl("/auth/logout")
+                .invalidateHttpSession(true)
+                .clearAuthentication(true)
+                .deleteCookies("JSESSIONID")
+                .logoutSuccessHandler((request, response, authentication) ->
+                        response.setStatus(HttpServletResponse.SC_OK))
+        );
         return http.build();
     }
 

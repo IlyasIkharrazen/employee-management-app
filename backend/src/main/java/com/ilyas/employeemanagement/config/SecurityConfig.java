@@ -35,8 +35,8 @@ public class SecurityConfig {
                                 .requestMatchers(HttpMethod.DELETE, "/employees/**")
                                 .hasRole("ADMIN")
                                 .anyRequest().authenticated()
-                ).httpBasic(Customizer.withDefaults()).
-        logout(logout -> logout
+                )
+                .logout(logout -> logout
                 .logoutUrl("/auth/logout")
                 .invalidateHttpSession(true)
                 .clearAuthentication(true)

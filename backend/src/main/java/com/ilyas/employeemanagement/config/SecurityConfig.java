@@ -4,6 +4,7 @@ import com.ilyas.employeemanagement.security.CustomUserDetailsService;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.ProviderManager;
@@ -22,8 +23,19 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
-        http.authorizeHttpRequests(auth -> auth.requestMatchers("/auth/**").permitAll().
-                anyRequest().authenticated()).httpBasic(Customizer.withDefaults()).
+        http.authorizeHttpRequests(auth ->
+                        auth
+                                .requestMatchers("/auth/**").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/employees/**")
+                                .hasAnyRole("USER", "ADMIN")
+                                .requestMatchers(HttpMethod.POST, "/employees/**")
+                                .hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.PUT, "/employees/**")
+                                .hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.DELETE, "/employees/**")
+                                .hasRole("ADMIN")
+                                .anyRequest().authenticated()
+                ).httpBasic(Customizer.withDefaults()).
         logout(logout -> logout
                 .logoutUrl("/auth/logout")
                 .invalidateHttpSession(true)

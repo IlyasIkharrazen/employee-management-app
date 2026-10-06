@@ -12,7 +12,11 @@ export class EmployeeService{
 
     }
     getEmployees(): Observable<Employee[]>{
-        return this.http.get<Employee[]>('http://localhost:8080/employees');
+        return this.http.get<Employee[]>(
+            'http://localhost:8080/employees',
+        {
+            withCredentials: true
+        });
     }
     searchEmployees(form: EmployeeSearchCriteria): Observable<Employee[]> {
         const params = new HttpParams()
@@ -21,7 +25,7 @@ export class EmployeeService{
         .set('email', form.email)
         .set('immatricule', form.immatricule)
         return this.http.get<Employee[]>('http://localhost:8080/employees/search',
-            {params}
+            {params, withCredentials: true}
         )
     }
 }

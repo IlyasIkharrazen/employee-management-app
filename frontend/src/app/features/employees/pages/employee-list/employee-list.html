@@ -1,5 +1,5 @@
-
 <app-user-header></app-user-header>
+
 <section class="employee-page">
   <div class="page-header">
     <div>
@@ -10,28 +10,36 @@
       </p>
     </div>
 
+    <div class="page-actions">
       @if (authService.currentUser()?.role === 'ADMIN') {
-   <button>Ajouter un employé</button>
-}
+        <button
+          type="button"
+          class="admin-button"
+        >
+          Ajouter un employé
+        </button>
+      }
 
-    <button
-      type="button"
-      class="primary-button"
-      (click)="loadEmployees()"
-    >
-      Afficher tous les employés
-    </button>
+      <button
+        type="button"
+        class="primary-button"
+        (click)="loadEmployees()"
+      >
+        Afficher tous les employés
+      </button>
+    </div>
   </div>
+
   <div class="form-search">
     <form [formGroup]="searchForm">
-        <label for="firstname">Prénom : </label>
-        <input formControlName="firstname" type="text" name="firstname">
-        <label for="lastname">Nom : </label>
-        <input formControlName="lastname" type="text" name="lastname">
-        <label for="email">Email : </label>
-        <input formControlName="email" type="text" name="email">
-        <label for="immatricule">Immatricule : </label>
-        <input formControlName="immatricule" type="text" name="immatricule">
+      <label for="firstname">Prénom : </label>
+      <input formControlName="firstname" type="text" name="firstname">
+      <label for="lastname">Nom : </label>
+      <input formControlName="lastname" type="text" name="lastname">
+      <label for="email">Email : </label>
+      <input formControlName="email" type="text" name="email">
+      <label for="immatricule">Immatricule : </label>
+      <input formControlName="immatricule" type="text" name="immatricule">
     </form>
   </div>
 
@@ -61,14 +69,13 @@
                   <span class="email">{{ employee.email }}</span>
                 </td>
                 <td>
-                    <span class="email">{{ employee.immatricule }}</span> 
+                  <span class="email">{{ employee.immatricule }}</span>
                 </td>
               </tr>
             }
           </tbody>
         </table>
       </div>
-      
     </div>
   } @else {
     <div class="empty-state">
@@ -78,6 +85,4 @@
       </p>
     </div>
   }
-
-
 </section>

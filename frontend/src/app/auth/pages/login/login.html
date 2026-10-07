@@ -1,0 +1,9 @@
+<div class="form-login">
+    <form [formGroup]="loginForm">
+        <label for="email">Email : </label>
+        <input formControlName="email" type="text" name="email">
+        <label for="password">Mot de passe : </label>
+        <input formControlName="password" type="password" name="password">
+        <button (click)="connexion()">Connexion</button>
+    </form>
+  </div>

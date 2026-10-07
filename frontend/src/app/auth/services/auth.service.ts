@@ -19,7 +19,7 @@ export class AuthService {
         );
     }
 
-    login(loginRequest: LoginRequest){
+    login(loginRequest: LoginRequest): Observable<string>{
         return this.getCsrfToken().pipe(
             switchMap(csrf => {
                 return this.http.post(

@@ -1,7 +1,16 @@
 @if (authService.currentUser(); as user) {
-  <div>
-    <span>{{ user.email }}</span>
-    <span>{{ user.role }}</span>
-    <button (click)="logout()">Se déconnecter</button>
+  <div class="user-header">
+    <div class="user-info">
+      <span class="user-email">{{ user.email }}</span>
+      <span class="role-badge">{{ user.role }}</span>
+    </div>
+
+    <button
+      type="button"
+      class="logout-button"
+      (click)="logout()"
+    >
+      Se déconnecter
+    </button>
   </div>
 }

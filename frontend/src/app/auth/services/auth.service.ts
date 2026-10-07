@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable, signal } from "@angular/core";
-import { Observable, switchMap } from "rxjs";
+import { Observable, switchMap, tap } from "rxjs";
 import { CsrfToken } from "../models/csrf-token.model";
 import { LoginRequest } from "../models/login-request.model";
 import { CurrentUser } from "../models/current-user.model";
@@ -50,10 +50,12 @@ export class AuthService {
             {
                 withCredentials: true
             }
-        )
+        ).pipe(
+            tap(currentUser => {
+                this.currentUser.set(currentUser);
+            })
+        );
     }
 
-    getCurrentUser().subscribe(value => {
-        currentUser.set(value);
-    });
+   
 }

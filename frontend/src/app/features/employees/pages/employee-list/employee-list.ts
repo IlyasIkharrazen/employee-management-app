@@ -4,6 +4,7 @@ import { Employee } from '../../models/employee.model';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, of, switchMap } from 'rxjs';
 import { EmployeeSearchCriteria } from '../../models/employee-search-criteria.model';
+import { AuthService } from '../../../../auth/services/auth.service';
 
 @Component({
   imports: [
@@ -24,7 +25,7 @@ export class EmployeeList implements OnInit{
     immatricule: new FormControl('')
   });
 
-  constructor(private employeeService: EmployeeService){
+  constructor(private employeeService: EmployeeService, private authService: AuthService){
   }
   ngOnInit(){
       this.searchForm.valueChanges.pipe(

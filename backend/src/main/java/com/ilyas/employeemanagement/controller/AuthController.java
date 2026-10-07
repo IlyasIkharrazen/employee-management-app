@@ -1,5 +1,6 @@
 package com.ilyas.employeemanagement.controller;
 
+import com.ilyas.employeemanagement.dto.auth.CurrentUserResponse;
 import com.ilyas.employeemanagement.dto.auth.LoginRequest;
 import com.ilyas.employeemanagement.dto.auth.RegisterRequest;
 import com.ilyas.employeemanagement.service.AuthService;
@@ -58,5 +59,10 @@ public class AuthController {
     public CsrfToken csrf(CsrfToken csrfToken){
         return csrfToken;
 
+    }
+    @GetMapping("/me")
+    public CurrentUserResponse me(Authentication authentication){
+        CurrentUserResponse currentUserResponse = new CurrentUserResponse(authentication.getName(), authentication.getAuthorities());
+        return currentUserResponse;
     }
 }

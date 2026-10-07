@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
   styleUrl: './login.scss',
   templateUrl: './login.html',
 })
-export class Login implements OnInit{
+export class Login{
 
   loginForm = new FormGroup({
       email: new FormControl(''),
@@ -23,9 +23,8 @@ export class Login implements OnInit{
   constructor(private authService: AuthService, private router: Router){
 
   }
-  ngOnInit(): void {
-      
-  }
+  
+  
 
   connexion(){
 
@@ -42,7 +41,6 @@ export class Login implements OnInit{
         console.error(error);
       }
     });
-    console.log(this.loginForm.value.email);
   }
 
 

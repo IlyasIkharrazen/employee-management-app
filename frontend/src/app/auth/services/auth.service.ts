@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable, switchMap } from "rxjs";
 import { CsrfToken } from "../models/csrf-token.model";
 import { LoginRequest } from "../models/login-request.model";
+import { CurrentUser } from "../models/current-user.model";
 
 @Injectable({
     providedIn: 'root'
@@ -38,5 +39,14 @@ export class AuthService {
 
             )
         );
+    }
+
+    getCurrentUser(): Observable<CurrentUser>{
+        return this.http.get<CurrentUser>(
+            'http://localhost:8080/auth/me',
+            {
+                withCredentials: true
+            }
+        )
     }
 }

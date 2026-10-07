@@ -25,7 +25,7 @@ export class EmployeeList implements OnInit{
     immatricule: new FormControl('')
   });
 
-  constructor(private employeeService: EmployeeService, private authService: AuthService){
+  constructor(private employeeService: EmployeeService, public authService: AuthService){
   }
   ngOnInit(){
       this.searchForm.valueChanges.pipe(

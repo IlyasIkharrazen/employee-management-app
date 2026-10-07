@@ -7,6 +7,10 @@
         Consulte les collaborateurs enregistrés dans l'application.
       </p>
     </div>
+    
+      @if (authService.currentUser()?.role === 'ADMIN') {
+   <button>Ajouter un employé</button>
+}
 
     <button
       type="button"
@@ -73,7 +77,5 @@
     </div>
   }
 
-  @if (authService.currentUser()?.role === 'ADMIN') {
-   <button>Ajouter un employé</button>
-}
+
 </section>

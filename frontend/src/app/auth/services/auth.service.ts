@@ -1,5 +1,5 @@
 import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
+import { Injectable, signal } from "@angular/core";
 import { Observable, switchMap } from "rxjs";
 import { CsrfToken } from "../models/csrf-token.model";
 import { LoginRequest } from "../models/login-request.model";
@@ -9,6 +9,9 @@ import { CurrentUser } from "../models/current-user.model";
     providedIn: 'root'
 })
 export class AuthService {
+
+    currentUser = signal<CurrentUser | null>(null);
+
     constructor(private http: HttpClient){}
 
     getCsrfToken(): Observable<CsrfToken>{
@@ -49,4 +52,8 @@ export class AuthService {
             }
         )
     }
+
+    getCurrentUser().subscribe(value => {
+        currentUser.set(value);
+    });
 }

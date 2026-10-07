@@ -1,0 +1,7 @@
+@if (authService.currentUser(); as user) {
+  <div>
+    <span>{{ user.email }}</span>
+    <span>{{ user.role }}</span>
+    <button (click)="logout()">Se déconnecter</button>
+  </div>
+}

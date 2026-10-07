@@ -57,5 +57,29 @@ export class AuthService {
         );
     }
 
+    logout(): Observable<string>{
+        return this.getCsrfToken().pipe(
+            switchMap(csrf => {
+                return this.http.post(
+                    'http://localhost:8080/auth/logout',
+                    {},
+                    {
+                        headers:{
+                            [csrf.headerName]: csrf.token
+
+                        },
+                        withCredentials: true,
+                        responseType: 'text'
+                    }
+                );
+            }
+            ),
+            tap(() => {
+                this.currentUser.set(null);
+            })
+        );
+
+    }
+
    
 }

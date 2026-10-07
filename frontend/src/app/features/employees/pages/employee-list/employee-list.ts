@@ -5,11 +5,13 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, of, switchMap } from 'rxjs';
 import { EmployeeSearchCriteria } from '../../models/employee-search-criteria.model';
 import { AuthService } from '../../../../auth/services/auth.service';
+import { UserHeader } from '../../../../auth/components/user-header/user-header';
 
 @Component({
   imports: [
     ReactiveFormsModule,
-  ],
+    UserHeader
+],
   selector: 'app-employee-list',
   styleUrl: './employee-list.scss',
   templateUrl: './employee-list.html',

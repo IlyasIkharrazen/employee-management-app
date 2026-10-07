@@ -19,7 +19,6 @@ export class Login implements OnInit{
       password: new FormControl('')
   });
 
-  loginRequest!: LoginRequest;
 
   constructor(private authService: AuthService, private router: Router){
 
@@ -29,11 +28,20 @@ export class Login implements OnInit{
   }
 
   connexion(){
-    this.loginRequest.email = this.loginForm.value.email ? this.loginForm.value.email : 'null';
-    this.loginRequest.password = this.loginForm.value.password ? this.loginForm.value.password : 'null';
 
-    this.authService.login(this.loginRequest);
-    this.router.navigate(['/employees']);
+    const loginRequest: LoginRequest = {
+      email: this.loginForm.value.email ?? '',
+      password: this.loginForm.value.password ?? ''
+    }
+
+    this.authService.login(loginRequest).subscribe({
+      next: response => {
+        this.router.navigate(['/employees']);
+      },
+      error: error => {
+        console.error(error);
+      }
+    });
     console.log(this.loginForm.value.email);
   }
 

@@ -1,0 +1,21 @@
+<div class="modal-backdrop">
+  <div class="modal">
+    <h2>Ajouter un employé</h2>
+
+    <div class="form-create">
+    <form [formGroup]="createEmployeeForm">
+      <label for="firstname">Prénom : </label>
+      <input formControlName="firstname" type="text" name="firstname">
+      <label for="lastname">Nom : </label>
+      <input formControlName="lastname" type="text" name="lastname">
+      <label for="email">Email : </label>
+      <input formControlName="email" type="text" name="email">
+      <label for="immatricule">Immatricule : </label>
+      <input formControlName="immatricule" type="text" name="immatricule">
+    </form>
+  </div>
+
+    <button (click)="close.emit()">Annuler</button>
+    <button (click)="createEmployee()">Créer</button>
+  </div>
+</div>

@@ -6,11 +6,13 @@ import { debounceTime, of, switchMap } from 'rxjs';
 import { EmployeeSearchCriteria } from '../../models/employee-search-criteria.model';
 import { AuthService } from '../../../../auth/services/auth.service';
 import { UserHeader } from '../../../../auth/components/user-header/user-header';
+import { EmployeeCreateModal } from '../../components/employee-create-modal/employee-create-modal';
 
 @Component({
   imports: [
     ReactiveFormsModule,
-    UserHeader
+    UserHeader,
+    EmployeeCreateModal
 ],
   selector: 'app-employee-list',
   styleUrl: './employee-list.scss',
@@ -19,6 +21,7 @@ import { UserHeader } from '../../../../auth/components/user-header/user-header'
 export class EmployeeList implements OnInit{
 
   employees = signal<Employee[]>([]);
+  isCreateModalOpen = signal(false);
 
   searchForm = new FormGroup({
     firstname: new FormControl(''),

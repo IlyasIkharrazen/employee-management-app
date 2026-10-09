@@ -15,6 +15,7 @@
         <button
           type="button"
           class="admin-button"
+          (click)="isCreateModalOpen.set(true)"
         >
           Ajouter un employé
         </button>
@@ -86,3 +87,6 @@
     </div>
   }
 </section>
+@if(isCreateModalOpen()){
+  <app-employee-create-modal (close)="isCreateModalOpen.set(false)"/>
+}

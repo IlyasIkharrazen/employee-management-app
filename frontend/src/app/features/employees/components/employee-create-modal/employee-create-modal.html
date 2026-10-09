@@ -1,21 +1,84 @@
 <div class="modal-backdrop">
   <div class="modal">
-    <h2>Ajouter un employé</h2>
+    <div class="modal-header">
+      <div>
+        <p class="modal-eyebrow">Administration</p>
+        <h2>Ajouter un employé</h2>
+        <p class="modal-subtitle">
+          Renseigne les informations du nouvel employé.
+        </p>
+      </div>
+
+      <button
+        type="button"
+        class="close-button"
+        (click)="close.emit()"
+        aria-label="Fermer"
+      >
+        ×
+      </button>
+    </div>
 
     <div class="form-create">
-    <form [formGroup]="createEmployeeForm">
-      <label for="firstname">Prénom : </label>
-      <input formControlName="firstname" type="text" name="firstname">
-      <label for="lastname">Nom : </label>
-      <input formControlName="lastname" type="text" name="lastname">
-      <label for="email">Email : </label>
-      <input formControlName="email" type="text" name="email">
-      <label for="immatricule">Immatricule : </label>
-      <input formControlName="immatricule" type="text" name="immatricule">
-    </form>
-  </div>
+      <form [formGroup]="createEmployeeForm">
+        <div class="field">
+          <label for="firstname">Prénom</label>
+          <input
+            id="firstname"
+            formControlName="firstname"
+            type="text"
+            name="firstname"
+          >
+        </div>
 
-    <button (click)="close.emit()">Annuler</button>
-    <button (click)="createEmployee()">Créer</button>
+        <div class="field">
+          <label for="lastname">Nom</label>
+          <input
+            id="lastname"
+            formControlName="lastname"
+            type="text"
+            name="lastname"
+          >
+        </div>
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input
+            id="email"
+            formControlName="email"
+            type="text"
+            name="email"
+          >
+        </div>
+
+        <div class="field">
+          <label for="immatricule">Immatricule</label>
+          <input
+            id="immatricule"
+            formControlName="immatricule"
+            type="text"
+            name="immatricule"
+          >
+        </div>
+      </form>
+    </div>
+
+    <div class="modal-actions">
+      <button
+        type="button"
+        class="secondary-button"
+        (click)="close.emit()"
+      >
+        Annuler
+      </button>
+
+      <button
+        type="button"
+        class="primary-button"
+        (click)="createEmployee()"
+      >
+        Créer
+      </button>
+    </div>
   </div>
 </div>

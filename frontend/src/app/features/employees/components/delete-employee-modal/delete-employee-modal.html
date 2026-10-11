@@ -1,0 +1,42 @@
+<div class="modal-backdrop">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <p class="modal-eyebrow">Administration</p>
+        <h2>Supprimer un employé</h2>
+        <p class="modal-subtitle">
+          Veux tu vraiment supprimer cette employé ?
+        </p>
+      </div>
+
+      <button
+        type="button"
+        class="close-button"
+        (click)="close.emit()"
+        aria-label="Fermer"
+      >
+        ×
+      </button>
+    </div>
+
+
+
+    <div class="modal-actions">
+      <button
+        type="button"
+        class="secondary-button"
+        (click)="close.emit()"
+      >
+        Annuler
+      </button>
+
+      <button
+        type="button"
+        class="primary-button"
+        (click)="delete()"
+      >
+        Oui, supprimer
+      </button>
+    </div>
+  </div>
+</div>

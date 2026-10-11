@@ -7,12 +7,16 @@ import { EmployeeSearchCriteria } from '../../models/employee-search-criteria.mo
 import { AuthService } from '../../../../auth/services/auth.service';
 import { UserHeader } from '../../../../auth/components/user-header/user-header';
 import { EmployeeCreateModal } from '../../components/employee-create-modal/employee-create-modal';
+import { DeleteEmployeeModal } from '../../components/delete-employee-modal/delete-employee-modal';
+import { PutEmployeeModal } from '../../components/put-employee-modal/put-employee-modal';
 
 @Component({
   imports: [
     ReactiveFormsModule,
     UserHeader,
-    EmployeeCreateModal
+    EmployeeCreateModal,
+    DeleteEmployeeModal,
+    PutEmployeeModal
 ],
   selector: 'app-employee-list',
   styleUrl: './employee-list.scss',
@@ -22,6 +26,9 @@ export class EmployeeList implements OnInit{
 
   employees = signal<Employee[]>([]);
   isCreateModalOpen = signal(false);
+  isDeleteModalOpen = signal(false);
+  isPutModalOpen = signal(false);
+  employeeSelected!: Employee;
 
   searchForm = new FormGroup({
     firstname: new FormControl(''),
@@ -55,7 +62,19 @@ export class EmployeeList implements OnInit{
   }
 
   loadEmployees(){
-    this.employeeService.getEmployees().subscribe(employees =>  this.employees.set(employees));
+    this.employeeService.getEmployees().subscribe({next: (employees) =>  this.employees.set(employees)});
+  }
+
+  openDeleteModal(employee: Employee){
+
+    this.employeeSelected = employee;
+    this.isDeleteModalOpen.set(true);
+
+  }
+
+  openPutModal(employee: Employee){
+    this.employeeSelected = employee;
+    this.isPutModalOpen.set(true);
   }
 
 

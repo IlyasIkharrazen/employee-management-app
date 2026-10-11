@@ -5,6 +5,7 @@ import { Employee } from '../models/employee.model';
 import { EmployeeSearchCriteria } from '../models/employee-search-criteria.model';
 import { AuthService } from '../../../auth/services/auth.service';
 import { CreateEmployee } from '../models/create-employee.model';
+import { CsrfToken } from '../../../auth/models/csrf-token.model';
 
 @Injectable({
   providedIn: 'root'
@@ -43,6 +44,46 @@ export class EmployeeService{
                         },
                         withCredentials: true,
                         responseType: 'text'
+                    }
+                );
+            }
+
+            )
+        );
+    }
+
+    putEmployee(employee: Employee){
+          return this.authService.getCsrfToken().pipe(
+            switchMap(csrf => {
+                return this.http.put(
+                    'http://localhost:8080/employees',
+                    employee,
+                    {
+                        headers: {
+                            [csrf.headerName]: csrf.token
+                        },
+                        withCredentials: true,
+                        responseType: 'text'
+                    }
+                );
+            }
+
+            )
+        );
+    }
+
+    deleteEmployee(employee: Employee){
+        let id: number = employee.id;
+
+        return this.authService.getCsrfToken().pipe(
+            switchMap(csrf => {
+                return this.http.delete(
+                    `http://localhost:8080/employees/${id}`,
+                    {
+                        headers: {
+                            [csrf.headerName]: csrf.token
+                        },
+                        withCredentials: true
                     }
                 );
             }

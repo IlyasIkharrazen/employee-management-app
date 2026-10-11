@@ -2,6 +2,7 @@ package com.ilyas.employeemanagement.controller;
 
 import com.ilyas.employeemanagement.entity.Employee;
 import com.ilyas.employeemanagement.service.EmployeeService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,6 +31,17 @@ public class EmployeeController {
         return employeeService.searchEmployee(firstname, lastname, email, immatricule);
     }
 
+    @DeleteMapping("/{employeeId}")
+    public ResponseEntity<Void> deleteEmployee(@PathVariable Long employeeId){
+        this.employeeService.deleteEmployee(employeeId);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping
+    public ResponseEntity<Void> putEmployee(@RequestBody Employee employee){
+        this.employeeService.putEmployee(employee);
+        return ResponseEntity.noContent().build();
+    }
 
 
 

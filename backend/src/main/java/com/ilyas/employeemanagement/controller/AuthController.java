@@ -59,7 +59,6 @@ public class AuthController {
     @GetMapping("/csrf")
     public CsrfToken csrf(CsrfToken csrfToken){
         return csrfToken;
-
     }
     @GetMapping("/me")
     public CurrentUserResponse me(Authentication authentication){

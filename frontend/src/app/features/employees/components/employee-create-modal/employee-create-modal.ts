@@ -4,11 +4,11 @@ import { EmployeeService } from '../../services/employee.service';
 import { Employee } from '../../models/employee.model';
 import { Router } from '@angular/router';
 import { CreateEmployee } from '../../models/create-employee.model';
+import { EmployeeList } from '../../pages/employee-list/employee-list';
 
 @Component({
   imports: [
-    ReactiveFormsModule,
-    EmployeeCreateModal
+    ReactiveFormsModule
   ],
   selector: 'app-employee-create-modal',
   styleUrl: './employee-create-modal.scss',
@@ -24,7 +24,7 @@ export class EmployeeCreateModal {
     immatricule: new FormControl('')
   });
 
-  constructor(private employeeService: EmployeeService, private router: Router){
+  constructor(private employeeService: EmployeeService, private router: Router, private employeeList: EmployeeList){
 
   }
   
@@ -38,6 +38,7 @@ export class EmployeeCreateModal {
     }; 
     this.employeeService.createEmployee(employee).subscribe({
       next: response => {
+        this.employeeList.loadEmployees();
         this.close.emit();
         this.router.navigate(['/employees']);
       },
@@ -46,7 +47,6 @@ export class EmployeeCreateModal {
       }
     });
     
-    console.log(employee);
   }
   
 }

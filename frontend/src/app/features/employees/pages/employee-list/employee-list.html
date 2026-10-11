@@ -72,6 +72,28 @@
                 <td>
                   <span class="email">{{ employee.immatricule }}</span>
                 </td>
+                  @if (authService.currentUser()?.role === 'ADMIN') {
+                  <td>
+                    <button
+                      type="button"
+                      class="admin-button"
+                      (click)="openPutModal(employee)"
+                    >
+                      Modifier
+                    </button>
+                  </td>
+                }
+                @if (authService.currentUser()?.role === 'ADMIN') {
+                  <td>
+                    <button
+                      type="button"
+                      class="admin-button"
+                      (click)="openDeleteModal(employee)"
+                    >
+                      Supprimer
+                    </button>
+                  </td>
+                }
               </tr>
             }
           </tbody>
@@ -89,4 +111,10 @@
 </section>
 @if(isCreateModalOpen()){
   <app-employee-create-modal (close)="isCreateModalOpen.set(false)"/>
+}
+@if(isDeleteModalOpen()){
+  <app-delete-employee-modal [employee]="employeeSelected" (close)="isDeleteModalOpen.set(false)"/>
+}
+@if(isPutModalOpen()){
+  <app-put-employee-modal [employee]="employeeSelected" (close)="isPutModalOpen.set(false)"/>
 }

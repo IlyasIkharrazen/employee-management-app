@@ -1,0 +1,84 @@
+<div class="modal-backdrop">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <p class="modal-eyebrow">Administration</p>
+        <h2>Modifier un employé</h2>
+        <p class="modal-subtitle">
+          Renseigne les nouvelles informations de l'employé.
+        </p>
+      </div>
+
+      <button
+        type="button"
+        class="close-button"
+        (click)="close.emit()"
+        aria-label="Fermer"
+      >
+        ×
+      </button>
+    </div>
+
+    <div class="form-create">
+      <form [formGroup]="createEmployeeForm">
+        <div class="field">
+          <label for="firstname">Prénom</label>
+          <input
+            id="firstname"
+            formControlName="firstname"
+            type="text"
+            name="firstname"
+          >
+        </div>
+
+        <div class="field">
+          <label for="lastname">Nom</label>
+          <input
+            id="lastname"
+            formControlName="lastname"
+            type="text"
+            name="lastname"
+          >
+        </div>
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input
+            id="email"
+            formControlName="email"
+            type="text"
+            name="email"
+          >
+        </div>
+
+        <div class="field">
+          <label for="immatricule">Immatricule</label>
+          <input
+            id="immatricule"
+            formControlName="immatricule"
+            type="text"
+            name="immatricule"
+          >
+        </div>
+      </form>
+    </div>
+
+    <div class="modal-actions">
+      <button
+        type="button"
+        class="secondary-button"
+        (click)="close.emit()"
+      >
+        Annuler
+      </button>
+
+      <button
+        type="button"
+        class="primary-button"
+        (click)="putEmployee()"
+      >
+        Modifier
+      </button>
+    </div>
+  </div>
+</div>

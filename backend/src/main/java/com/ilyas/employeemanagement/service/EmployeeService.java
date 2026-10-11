@@ -2,9 +2,11 @@ package com.ilyas.employeemanagement.service;
 
 import com.ilyas.employeemanagement.entity.Employee;
 import com.ilyas.employeemanagement.repository.EmployeeRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EmployeeService {
@@ -20,6 +22,22 @@ public class EmployeeService {
 
     public Employee createEmployee(Employee employee){
         return employeeRepository.save(employee);
+    }
+
+    public ResponseEntity<Void> putEmployee(Employee employee){
+        Optional<Employee> employeeUpdated = this.employeeRepository.findById(employee.getId());
+        employeeUpdated.ifPresent(value -> {
+            value.setFirstname(employee.getFirstname());
+            value.setLastname(employee.getLastname());
+            value.setEmail(employee.getEmail());
+            value.setImmatricule(employee.getImmatricule());
+        } );
+        employeeUpdated.ifPresent(this.employeeRepository::save);
+        return ResponseEntity.noContent().build();
+    }
+
+    public void deleteEmployee(Long employeeId){
+         this.employeeRepository.deleteById(employeeId);
     }
 
     public List<Employee> searchEmployee(String firstname, String lastname, String email, String immatricule){
